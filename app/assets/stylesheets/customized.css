@@ -23,7 +23,6 @@ body {
 .navbar .nav > li > a:hover, .navbar .logo-text > a:hover {
 	color: lightgrey;
 }
-
 /*.navbar .nav > li > a, .navbar .nav > li > a:first-letter{
 color: rgb(150, 200, 20);     
 }
