@@ -1,4 +1,4 @@
-class AddUserIdToFruitsAndOrders < ActiveRecord::Migration
+class AddUserIdToAddressesAndOrders < ActiveRecord::Migration
   def up
   	add_column("addresses", "user_id", :integer)
   	add_column("orders", "user_id", :integer)

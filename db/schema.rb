@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140611070043) do
+ActiveRecord::Schema.define(:version => 20140608072133) do
 
   create_table "addresses", :force => true do |t|
     t.string   "address"
@@ -41,5 +41,15 @@ ActiveRecord::Schema.define(:version => 20140611070043) do
   end
 
   add_index "orders", ["user_id"], :name => "index_orders_on_user_id"
+
+  create_table "users", :force => true do |t|
+    t.string   "first_name",      :limit => 20
+    t.string   "last_name",       :limit => 20
+    t.string   "mobile_no",       :limit => 15
+    t.string   "salt"
+    t.string   "hashed_password"
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+  end
 
 end
