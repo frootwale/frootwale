@@ -1,2 +1,7 @@
-<h1>Fruits#index</h1>
-<p>Hello there !</p>
+<center><h1><u> List of available fruits </u></h1></center><br>
+
+<% @fruits.each do |fruit| %>
+<%= render(:partial => "fruit", :locals => {:fruit => fruit})%>
+<% end %>
+
+<center><h1> The End </h1></center>
