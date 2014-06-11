@@ -1,0 +1,23 @@
+<% @page_title = "Login" %>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%= stylesheet_link_tag "signin" %>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="form-signin" style="margin-top:120px; background:#FFFFFF; box-shadow:0px 0px 10px #666666; border:1px solid #CCCCCC;">
+        <%= form_for(:user, :url => {:action => 'create'}) do |f| %>
+          <h2 class="form-signin-heading headline">User Login</h2>
+          <div class="line"></div>
+          <%= f.telephone_field(:mobile_no, :class => "form-control spacing", :placeholder => "Mobile No", :autofocus => true) %>
+          <%= f.password_field(:password, :class => "form-control", :placeholder => "Password") %>
+          <%= f.check_box(:remember_me) %> Remeber me
+          <div class="spacing"></div>
+          <%= submit_tag("Login", :class => "btn btn-lg btn-primary btn-block") %>
+        <% end %>
+      </div>
+    </div>
+  </body>
+</html>
