@@ -43,12 +43,13 @@ ActiveRecord::Schema.define(:version => 20140608072133) do
   add_index "orders", ["user_id"], :name => "index_orders_on_user_id"
 
   create_table "users", :force => true do |t|
-    t.string   "first_name", :limit => 20
-    t.string   "last_name",  :limit => 20
-    t.string   "mobile_no",  :limit => 15
-    t.string   "email",      :limit => 100
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
+    t.string   "first_name",      :limit => 20
+    t.string   "last_name",       :limit => 20
+    t.string   "mobile_no",       :limit => 15
+    t.string   "salt"
+    t.string   "hashed_password"
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
   end
 
 end
