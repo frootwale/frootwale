@@ -1,0 +1,72 @@
+<html lang="en">
+  <head>
+    <title>Frootwale | <%= @page_title || "nothing"%></title>
+  	<%= stylesheet_link_tag('bootstrap.min', 'sticky-footer-navbar', 'customized') %>
+    <%= stylesheet_link_tag    "application", :media => "all" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+    <%= favicon_link_tag 'tab-favicon.ico' %>
+  </head>
+  <body>
+  	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collaps
+          ">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <div class="logo-text">
+            <%= link_to("Frootwale.com", {:action => 'index'} , :class => 'navbar-brand custom-font', :id => 'popover', :rel => 'popover')%>
+          </div>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav nav-tab nav-pills pull-right custom-li">
+            <li class="home">
+              <%= link_to("Home", {:controller => 'fruits', :action => 'index'}) %>
+            </li>
+            <li>
+              <%= link_to("Special combos", "#") %>
+            </li>
+            <li>
+              <%= link_to("Contact us", {:controller => 'fruits', :action => 'contact_us'}) %>
+            </li>
+            <li class="dropdown">
+              <%= link_to(raw("Login/Register" +("<b class= 'caret'></b>")), "#", :class => "dropdown-toggle", :data => {:toggle=>"dropdown"}) %>
+              <ul class="dropdown-menu">
+                <li>
+                  <%= link_to("Login", {:controller => 'users', :action => 'login'}) %>
+                </li>
+                <li class="divider"></li>
+                <li>
+                  <%= link_to("Register", {:controller => 'users', :action => 'register'}) %>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div id="footer">
+      <div class="container">
+          <p class="text-muted"><center>Copyright © frootwale.com 2014</center></p>
+      </div>
+    </div>
+    <div>
+    <div id="content">
+      <%= yield %>
+    </div>
+  <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster --> 
+    <%= javascript_include_tag "popover" %>
+    <script type="text/javascript">
+      var link = '<a target="_blank" href="#"><%= image_tag("logo.png") %></a>';
+      $('#popover').popover({trigger:'hover', placement:'bottom', content:link, html:true});  
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="../../dist/js/bootstrap.min.js"></script>
+  </body>
+</html>
