@@ -19,12 +19,12 @@ body {
 }
 .custom-li > li:hover {
 	border-radius: 8px;
-	background-color: 228b22;
+	background-color: orange;
 }
 .navbar .nav > li > a, .navbar .logo-text > a {
 	color: white;
 }
-.navbar .nav > li > a:hover, .navbar .logo-text > a:hover {
+.navbar .logo-text > a:hover {
 	color: lightgrey;
 }
 ul.nav li.dropdown:hover ul.dropdown-menu {
