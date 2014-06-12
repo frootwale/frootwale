@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140608072133) do
+ActiveRecord::Schema.define(:version => 20140611102435) do
 
   create_table "addresses", :force => true do |t|
     t.string   "address"
@@ -21,6 +21,15 @@ ActiveRecord::Schema.define(:version => 20140608072133) do
   end
 
   add_index "addresses", ["user_id"], :name => "index_addresses_on_user_id"
+
+  create_table "admin_users", :force => true do |t|
+    t.string   "username"
+    t.string   "hashed_password"
+    t.string   "salt"
+    t.string   "mobile_no"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
 
   create_table "fruits", :force => true do |t|
     t.string   "name"
