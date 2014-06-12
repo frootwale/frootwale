@@ -16,7 +16,7 @@
           <%= f.telephone_field(:mobile_no, :class => "form-control spacing", :placeholder => "Mobile No") %>
           <%= f.password_field(:password, :class => "form-control", :placeholder => "Password") %>
           <%= f.password_field(:password, :class => "form-control", :placeholder => "Confirm password") %>
-          <%= f.check_box(:remember_me) %> I agree to the <a href="#">Terms and Conditions</a>.
+          <input type="checkbox"> I agree to the <a href="#">Terms and Conditions</a>.
           <div class="spacing"></div>
           <%= submit_tag("Sign Up", :class => "btn btn-lg btn-success btn-block") %>
         <% end %>
