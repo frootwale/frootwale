@@ -8,7 +8,7 @@
   <body>
     <div class="container">
       <div class="form-signin" style="margin-top:120px; background:#FFFFFF; box-shadow:0px 0px 10px #666666; border:1px solid #CCCCCC;">
-        <%= form_for(:user, :url => {:action => 'create'}) do |f| %>
+        <%= form_for(:user, :url => {:action => 'attempt_login'}) do |f| %>
           <h2 class="form-signin-heading headline">User Login</h2>
           <div class="line"></div>
           <%= f.telephone_field(:mobile_no, :class => "form-control spacing", :placeholder => "Mobile No", :autofocus => true) %>

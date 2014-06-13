@@ -2,7 +2,15 @@ class UsersController < ApplicationController
 
 	layout 'header_footer'
 
+	def new
+		render 'register'
+	end
+
 	def create
-		render 'login'
+		hash = params[:user]
+		@new_user = User.create(hash)
+		session[:user_id] = @new_user.id
+		session[:first_name] = @new_user.first_name
+		redirect_to(:controller => "fruits", :action => "index")
 	end
 end

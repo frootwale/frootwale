@@ -1,1 +1,26 @@
 <% @page_title = "Register" %>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%= stylesheet_link_tag "signin" %>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="form-signin" style="margin-top:70px; background:#FFFFFF; box-shadow:0px 0px 10px #666666; border:1px solid #CCCCCC; width:450px;">
+        <%= form_for(:user, :url => {:action => 'create'}) do |f| %>
+          <h2 class="form-signin-heading headline">User Signup</h2>
+          <div class="line"></div>
+          <%= f.text_field(:first_name, :class => "form-control spacing", :placeholder => "First name", :autofocus => true) %>
+          <%= f.text_field(:last_name, :class => "form-control spacing", :placeholder => "Last name") %>
+          <%= f.telephone_field(:mobile_no, :class => "form-control spacing", :placeholder => "Mobile No") %>
+          <%= f.password_field(:password, :class => "form-control", :placeholder => "Password") %>
+          <%= f.password_field(:password, :class => "form-control", :placeholder => "Confirm password") %>
+          <input type="checkbox"> I agree to the <a href="#">Terms and Conditions</a>.
+          <div class="spacing"></div>
+          <%= submit_tag("Sign Up", :class => "btn btn-lg btn-success btn-block") %>
+        <% end %>
+      </div>
+    </div>
+  </body>
+</html>
