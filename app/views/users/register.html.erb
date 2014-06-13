@@ -11,16 +11,96 @@
         <%= form_for(:user, :url => {:action => 'create'}) do |f| %>
           <h2 class="form-signin-heading headline">User Signup</h2>
           <div class="line"></div>
-          <%= f.text_field(:first_name, :class => "form-control spacing", :placeholder => "First name", :autofocus => true) %>
-          <%= f.text_field(:last_name, :class => "form-control spacing", :placeholder => "Last name") %>
-          <%= f.telephone_field(:mobile_no, :class => "form-control spacing", :placeholder => "Mobile No") %>
-          <%= f.password_field(:password, :class => "form-control", :placeholder => "Password") %>
-          <%= f.password_field(:password, :class => "form-control", :placeholder => "Confirm password") %>
-          <input type="checkbox"> I agree to the <a href="#">Terms and Conditions</a>.
-          <div class="spacing"></div>
-          <%= submit_tag("Sign Up", :class => "btn btn-lg btn-success btn-block") %>
+          
+          <%= f.text_field(:first_name, :class => "form-control fnname", :placeholder => "First name", :autofocus => true, :id => 'fname', :onfocus => "document.getElementById('errfn').innerHTML = \"\"", :onblur => 'validationname(fname.value, "errfn")') %>
+          <div id="errfn" class="spacing" style="color:red">   </div>
+
+          <%= f.text_field(:last_name, :class => "form-control", :placeholder => "Last name", :id => 'lname', :onblur => 'validationname(lname.value, "errln")', :onfocus => "document.getElementById('errln').innerHTML = \"\"") %>
+          <div id="errln" class="spacing" style="color:red">   </div>
+
+          <%= f.telephone_field(:mobile_no, :class => "form-control", :placeholder => "Mobile No", :id => 'mobile_no', :onblur => 'validationmn(mobile_no.value)', :onfocus => "document.getElementById('errmn').innerHTML = \"\"") %>
+          <div id="errmn" class="spacing" style="color:red">   </div>
+
+          <%= f.password_field(:password, :class => "form-control", :placeholder => "Password", :id => 'pass1', :onblur => 'validationpwd(pass1.value)', :onfocus => "document.getElementById('errpass1').innerHTML = \"\"") %>
+          <div id="errpass1" class="spacing" style="margin-top:-10px; color:red">   </div>
+
+          <%= f.password_field(:password, :class => "form-control", :placeholder => "Confirm password", :id => 'pass2', :onblur => 'validationpwdmatch(pass1.value, pass2.value)', :onfocus => "document.getElementById('errpass2').innerHTML = \"\"") %>
+          <div id="errpass2" class="spacing" style="margin-top:-10px; color:red">   </div>
+
+          <input type="checkbox" id="terms" onblur="validationterms(terms.checked)"> I agree to the <a href="#">Terms and Conditions</a>.
+          <div id="errterms" class="spacing" style="color:red">   </div>
+
+          <%= submit_tag("Sign Up", :class => "btn btn-lg btn-success btn-block", :onClick => 'return validation(fname.value, lname.value, mobile_no.value, pass1.value, pass2.value, terms.checked);') %>
         <% end %>
       </div>
     </div>
+    <script type="text/javascript">
+      function validationname(name, div_id) {
+        if (name.length == 0) {
+          document.getElementById(div_id).innerHTML="You can't leave this empty";
+          return false;          
+        } else {
+          document.getElementById(div_id).innerHTML="";
+          return true;          
+        }
+      }
+
+      function validationmn(mob_number)
+      {
+        var Num = /^\d{10}$/;
+        if (mob_number.length == 0) {
+          document.getElementById('errmn').innerHTML="You can't leave this empty";
+          return false;
+        } else {
+            if(!Num.test(mob_number))
+            {
+              document.getElementById('errmn').innerHTML="Invalid mobile number";
+              return false;
+            } else {
+              document.getElementById('errmn').innerHTML="";
+              return true;
+            }
+        }
+      }
+
+      function validationpwd(password)
+      {
+        if (password.length == 0) {
+          document.getElementById('errpass1').innerHTML="You can't leave this empty";
+          return false;
+        }  else if (password.length < 6){
+          document.getElementById('errpass1').innerHTML="Password should contain at least 6 characters "
+        } else {
+          document.getElementById('errpass1').innerHTML="";
+          return true;
+        }
+      }
+      
+      function validationpwdmatch(pass1, pass2)
+      {
+        if (pass1 != pass2) {
+          document.getElementById('errpass2').innerHTML="Passwords do not match";
+          return false;
+        }  else {
+          document.getElementById('errpass2').innerHTML="";
+          return true;
+        }
+      }
+
+      function validationterms(agree)
+      {
+        if (agree == true) {
+          document.getElementById('errterms').innerHTML="";
+          return true;
+        } else {
+          document.getElementById('errterms').innerHTML="In order to use our services, you must agree to our terms and conditions";
+          return false;
+        }
+      }
+
+      function validation(fn, ln, mobile_no, pass1, pass2, terms) {
+        return (validationname(fn, "errfn") && validationname(ln, "errln") && validationmn(mobile_no) && validationpwd(pass1) && validationpwdmatch(pass1, pass2) && validationterms(terms));
+      }
+    </script>
   </body>
 </html>
