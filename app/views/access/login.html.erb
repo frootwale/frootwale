@@ -7,17 +7,56 @@
 
   <body>
     <div class="container">
-      <div class="form-signin" style="margin-top:120px; background:#FFFFFF; box-shadow:0px 0px 10px #666666; border:1px solid #CCCCCC;">
-        <%= form_for(:user, :url => {:action => 'attempt_login'}) do |f| %>
+      <div class="form-signin" style="margin-top:120px; background:#FFFFFF; box-shadow:0px 0px 10px #666666; border:1px solid #CCCCCC; width:360px;">
+        <%= form_for(:user, :url => {:action => 'attempt_login'}, :id => 'login_form') do |f| %>
           <h2 class="form-signin-heading headline">User Login</h2>
           <div class="line"></div>
-          <%= f.telephone_field(:mobile_no, :class => "form-control spacing", :placeholder => "Mobile No", :autofocus => true) %>
-          <%= f.password_field(:password, :class => "form-control", :placeholder => "Password") %>
+          <%= f.telephone_field(:mobile_no, :class => "form-control", :placeholder => "Mobile No", :autofocus => true, :id => 'mobile_no', :onblur => 'validationmn(mobile_no.value)', :onfocus => "document.getElementById('errmn').innerHTML = \"\"")%>
+          <div id="errmn" class="spacing" style="color:red">   </div>
+          
+          <%= f.password_field(:password, :class => "form-control", :placeholder => "Password", :id => 'password', :onblur => 'validationpwd(password.value)', :onfocus => "document.getElementById('errpwd').innerHTML = \"\"") %>
+          <div id="errpwd" class="spacing" style="color:red">   </div>
+          
           <%= f.check_box(:remember_me) %> Remeber me
           <div class="spacing"></div>
-          <%= submit_tag("Login", :class => "btn btn-lg btn-primary btn-block") %>
+          
+          <%= submit_tag("Login", :class => "btn btn-lg btn-primary btn-block", :onClick => 'return validation(mobile_no.value, password.value);') %>
         <% end %>
       </div>
     </div>
+    <script type="text/javascript">
+      function validationmn(mob_number)
+      {
+        var Num = /^\d{10}$/;
+        if (mob_number.length == 0) {
+          document.getElementById('errmn').innerHTML="You can't leave this empty.";
+          return false;
+        } else {
+            if(!Num.test(mob_number))
+            {
+              document.getElementById('errmn').innerHTML="Invalid mobile number.";
+              return false;
+            } else {
+              document.getElementById('errmn').innerHTML="";
+              return true;
+            }
+        }
+      }
+
+      function validationpwd(password)
+      {
+        if (password.length == 0) {
+          document.getElementById('errpwd').innerHTML="You can't leave this empty.";
+          return false;
+        }  else {
+          document.getElementById('errpwd').innerHTML="";
+          return true;
+        }
+      }
+
+      function validation(mob_number, password) {
+        return (validationmn(mob_number) && validationpwd(password));
+      }
+    </script>
   </body>
 </html>
