@@ -3,7 +3,6 @@ class AccessController < ApplicationController
 	layout 'header_footer'
 
 	def login
-		puts "logging in"
 		render 'login'
 	end
 
