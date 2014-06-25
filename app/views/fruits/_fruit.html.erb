@@ -1,10 +1,14 @@
-<div class="col-md-3">
-    <div class="thumbnail">
-      <img src=<%= "images/" + fruit.name + ".jpg" %> alt=<%= fruit.name %> height="300" width="221" >
-      <div class="caption">
-        <h3><%= fruit.name.camelize %></h3>
-        <p>Rs. <%= fruit.price %></p>
-        <p><center><a href="#" class="btn btn-primary" role="button" width="400">Add To Cart</a></center>
+<div class="col-md-3" >
+<div class="list-item">
+    <div class="list-thumb">
+      <div class="title">
+        <h4><%= fruit.name.camelize %></h4>
       </div>
+      <img src=<%= "images/" + fruit.name + ".jpg" %> alt=<%= fruit.name %> height="220px">
     </div>
+
+    <div class="list-content">
+      <a href="#" class="price-btn">₹. <%= fruit.price %></a>
+    </div>
+</div>
 </div>

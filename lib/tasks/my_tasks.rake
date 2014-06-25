@@ -19,4 +19,17 @@ namespace :my_tasks do
   	end
   end
 
+  desc "Add fruits to table"
+  task :add_fruits => :environment do
+    fruits = ["apple","banana","custard_apple","grapes","kiwi","mango","orange","papaya","pear","pineapple","plum","pomegranate","strawberry","tamarind","watermelon"]
+    price = 50.00
+    stock = 40
+    
+    fruits.each do |fruit|
+      Fruit.create(:name => fruit, :price => price, :stock => stock)
+      price += 10.50
+      stock += 2
+    end
+  end
+
 end
